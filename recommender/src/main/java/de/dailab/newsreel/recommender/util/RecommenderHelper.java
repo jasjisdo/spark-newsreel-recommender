@@ -1,6 +1,6 @@
 package de.dailab.newsreel.recommender.util;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
+import de.dailab.newsreel.recommender.common.item.Item;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;

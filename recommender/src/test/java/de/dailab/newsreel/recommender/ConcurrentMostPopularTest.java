@@ -1,6 +1,6 @@
 package de.dailab.newsreel.recommender;
 
-import de.dailab.newsreel.recommender.common.baseimpl.BasicItem;
+import de.dailab.newsreel.recommender.common.item.BasicItem;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

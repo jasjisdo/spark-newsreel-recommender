@@ -1,7 +1,5 @@
 package de.dailab.newsreel.recommender.metarecommender.delegate;
 
-import de.dailab.newsreel.recommender.common.extimpl.PlistaItem;
-import de.dailab.newsreel.recommender.common.util.EvalLevel;
 import de.dailab.newsreel.recommender.metarecommender.inter.RequestHandler;
 import de.dailab.newsreel.recommender.metarecommender.requesthandler.IdomaarRequestHandler;
 import de.dailab.newsreel.recommender.metarecommender.requesthandler.PlistaRequestHandler;

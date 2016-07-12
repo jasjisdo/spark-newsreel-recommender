@@ -1,9 +1,8 @@
 package de.dailab.newsreel.recommender.metarecommender.main;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.metarecommender.voidfunc.JettyFallbackStartFunction;
-import de.dailab.newsreel.recommender.metarecommender.voidfunc.JettyStartFunction;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -22,7 +21,7 @@ public class FallbackMain {
         /*
          * This RDD represents the post send data from plista webclient input data.
          */
-        Map< Recommender, JavaRDD<? extends Item> > inputMap = null;
+        Map<Recommender, JavaRDD<? extends Item> > inputMap = null;
 
         /*
          * This RDD represents result data received from the recommenders.

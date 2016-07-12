@@ -1,6 +1,6 @@
 package de.dailab.newsreel.recommender.metarecommender.rank;
 
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.SelfSortingTreeSet;
 
 import java.io.Serializable;

@@ -1,10 +1,8 @@
 package de.dailab.newsreel.recommender.metarecommender.util;
 
-import de.dailab.newsreel.recommender.common.extimpl.IdomaarItem;
-import de.dailab.newsreel.recommender.common.inter.Item;
+import de.dailab.newsreel.recommender.common.item.Item;
 import de.dailab.newsreel.recommender.metarecommender.delegate.RecommenderDelegate;
 import org.apache.log4j.Logger;
-import org.apache.spark.api.java.JavaRDD;
 
 /**
  * Created by domann on 21.12.15.

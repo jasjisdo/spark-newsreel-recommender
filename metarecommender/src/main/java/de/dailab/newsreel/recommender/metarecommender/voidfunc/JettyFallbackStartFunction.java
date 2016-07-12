@@ -1,7 +1,7 @@
 package de.dailab.newsreel.recommender.metarecommender.voidfunc;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.plistacontest.client.ContestHandler;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.VoidFunction;

@@ -1,10 +1,9 @@
 package de.dailab.newsreel.recommender;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.ObjectArrays;
 import com.google.common.collect.Sets;
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.SharedService;
 import de.dailab.newsreel.recommender.util.LimitedList;
 import de.dailab.newsreel.recommender.util.SingleThreadExecutor;
@@ -13,7 +12,6 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.mllib.fpm.AssociationRules;
 import org.apache.spark.mllib.fpm.FPGrowth;
 import org.apache.spark.mllib.fpm.FPGrowthModel;
-import org.apache.spark.rdd.RDD;
 import scala.Tuple2;
 import static de.dailab.newsreel.recommender.util.RecommenderHelper.*;
 
@@ -22,8 +20,11 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * EXPERIMENTAL
+ *
  * Created by jens on 19.01.16.
  */
+@Deprecated
 public class FP implements Recommender {
 
     private static final Logger log = Logger.getLogger(MostPopular.class);

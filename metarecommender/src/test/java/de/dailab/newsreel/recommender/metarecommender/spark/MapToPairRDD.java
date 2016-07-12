@@ -42,7 +42,7 @@ public class MapToPairRDD {
         Iterator<Integer> valueIter = valuesStream.iterator();
 
         for (int i = 0; i < streamSize; i++) {
-            map.put(keyIter.next(),valueIter.next());
+            map.put(keyIter.next().intValue(),valueIter.next().intValue());
         }
     }
 

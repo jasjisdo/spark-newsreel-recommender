@@ -1,7 +1,4 @@
-package de.dailab.newsreel.recommender.common.baseimpl;
-
-
-import de.dailab.newsreel.recommender.common.inter.Item;
+package de.dailab.newsreel.recommender.common.item;
 
 import java.util.ArrayList;
 

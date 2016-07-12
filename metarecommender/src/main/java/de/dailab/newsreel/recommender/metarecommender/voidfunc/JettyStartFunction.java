@@ -1,14 +1,10 @@
 package de.dailab.newsreel.recommender.metarecommender.voidfunc;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import java.net.InetSocketAddress;
-import java.util.Map;
 
 /**
  * This is a void function [ (port) -> () ] which initialize a Eclipse Jetty Web Server.

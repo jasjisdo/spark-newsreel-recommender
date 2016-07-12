@@ -1,17 +1,16 @@
-package de.dailab.newsreel.recommender.common.extimpl;
+package de.dailab.newsreel.recommender.common.item;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import de.dailab.newsreel.recommender.common.enums.Entity;
 import de.dailab.newsreel.recommender.common.enums.Simple;
-import de.dailab.newsreel.recommender.common.inter.Item;
 
 import java.util.ArrayList;
 
 /**
  * Created by domann on 18.12.15.
  */
-public class IdomaarItem implements Item{
+public class IdomaarItem implements Item {
 
     protected Long itemId;
     protected Long userId;

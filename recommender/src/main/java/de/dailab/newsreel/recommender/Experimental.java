@@ -1,18 +1,19 @@
 package de.dailab.newsreel.recommender;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.SharedService;
-import org.apache.spark.api.java.JavaRDD;
 import scala.Tuple2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
+ * EXPERIMENTAL
+ *
  * Created by jens on 16.01.16.
  */
+@Deprecated
 public class Experimental implements Recommender {
 
     private ArrayList<Item> pool = new ArrayList<>();

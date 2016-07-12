@@ -1,9 +1,9 @@
 package de.dailab.newsreel.recommender;
 
-import de.dailab.newsreel.recommender.common.baseimpl.BasicItem;
+import de.dailab.newsreel.recommender.common.item.BasicItem;
 import de.dailab.newsreel.recommender.common.defaults.PlistaParameter;
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.EvalLevel;
 import de.dailab.newsreel.recommender.common.util.SharedService;
 import de.dailab.newsreel.recommender.util.LimitedList;

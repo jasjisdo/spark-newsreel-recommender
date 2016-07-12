@@ -1,7 +1,7 @@
 import de.dailab.newsreel.recommender.*;
-import de.dailab.newsreel.recommender.common.extimpl.IdomaarItem;
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.IdomaarItem;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.SharedService;
 import de.dailab.newsreel.recommender.CF;
 import org.apache.commons.lang3.tuple.ImmutablePair;

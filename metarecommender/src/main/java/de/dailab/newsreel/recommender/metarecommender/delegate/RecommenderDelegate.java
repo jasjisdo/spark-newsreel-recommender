@@ -1,9 +1,8 @@
 package de.dailab.newsreel.recommender.metarecommender.delegate;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.metarecommender.context.Context;
-import org.apache.spark.api.java.JavaRDD;
 
 import java.io.Serializable;
 import java.util.HashMap;

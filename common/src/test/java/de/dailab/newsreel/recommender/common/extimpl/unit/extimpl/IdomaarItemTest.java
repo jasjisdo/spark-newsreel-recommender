@@ -1,6 +1,6 @@
 package de.dailab.newsreel.recommender.common.extimpl.unit.extimpl;
 
-import de.dailab.newsreel.recommender.common.extimpl.IdomaarItem;
+import de.dailab.newsreel.recommender.common.item.IdomaarItem;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

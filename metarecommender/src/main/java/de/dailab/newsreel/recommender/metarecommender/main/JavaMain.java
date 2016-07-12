@@ -1,8 +1,6 @@
 package de.dailab.newsreel.recommender.metarecommender.main;
 
 import com.google.common.collect.*;
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
 
 import de.dailab.newsreel.recommender.common.util.ConfigLoader;
 import de.dailab.newsreel.recommender.common.util.SharedService;
@@ -16,10 +14,8 @@ import org.apache.spark.api.java.function.Function2;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Spark (java) main class which starts a meta recommender based on jetty web server.

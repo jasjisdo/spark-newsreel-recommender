@@ -1,12 +1,8 @@
-package de.dailab.newsreel.recommender.common.extimpl;
+package de.dailab.newsreel.recommender.common.item;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.dailab.newsreel.recommender.common.enums.Simple;
-import de.dailab.newsreel.recommender.common.inter.Item;
 import de.dailab.newsreel.recommender.common.util.ItemUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**

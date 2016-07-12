@@ -1,6 +1,5 @@
-package de.dailab.newsreel.recommender.common.abstracts;
+package de.dailab.newsreel.recommender.common.item;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
 
 /**
  * Created by domann on 21.01.16.

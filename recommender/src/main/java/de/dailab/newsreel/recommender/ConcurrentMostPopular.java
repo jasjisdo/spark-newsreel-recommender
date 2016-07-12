@@ -1,19 +1,22 @@
 package de.dailab.newsreel.recommender;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.util.ConcurrentSparkList;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * EXPERIMENTAL
+ *
  * A item-based most-popular recommender considering time constraints.
  * 
  * @author domann
  *
  */
-public class ConcurrentMostPopular implements Recommender{
+@Deprecated
+public class ConcurrentMostPopular implements Recommender {
 
     private final Map<Long, ConcurrentSparkList> domainMap;
     private final Set<Long> localBlackList;

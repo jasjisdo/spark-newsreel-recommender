@@ -1,4 +1,6 @@
-package de.dailab.newsreel.recommender.common.inter;
+package de.dailab.newsreel.recommender.common.recommender;
+
+import de.dailab.newsreel.recommender.common.item.Item;
 
 import java.io.Serializable;
 import java.util.List;

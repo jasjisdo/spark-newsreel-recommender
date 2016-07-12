@@ -3,9 +3,8 @@ package de.dailab.newsreel.recommender.common.util;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.dailab.newsreel.recommender.common.enums.Simple;
-import de.dailab.newsreel.recommender.common.extimpl.PlistaItem;
+import de.dailab.newsreel.recommender.common.item.PlistaItem;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;

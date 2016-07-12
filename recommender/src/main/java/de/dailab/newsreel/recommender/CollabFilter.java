@@ -1,7 +1,7 @@
 package de.dailab.newsreel.recommender;
 
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.SharedService;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -23,6 +23,8 @@ import org.apache.spark.api.java.function.Function;
 
 
 /**
+ * EXPERIMENTAL
+ *
  * Created by jens on 08.12.15.
  */
 @Deprecated

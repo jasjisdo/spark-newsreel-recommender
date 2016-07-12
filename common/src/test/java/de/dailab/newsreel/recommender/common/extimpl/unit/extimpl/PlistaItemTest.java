@@ -1,6 +1,6 @@
 package de.dailab.newsreel.recommender.common.extimpl.unit.extimpl;
 
-import de.dailab.newsreel.recommender.common.extimpl.PlistaItem;
+import de.dailab.newsreel.recommender.common.item.PlistaItem;
 import org.junit.Before;
 import org.junit.Test;
 

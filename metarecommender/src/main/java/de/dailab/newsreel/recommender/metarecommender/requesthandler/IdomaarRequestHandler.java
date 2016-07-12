@@ -1,8 +1,8 @@
 package de.dailab.newsreel.recommender.metarecommender.requesthandler;
 
-import de.dailab.newsreel.recommender.common.extimpl.IdomaarItem;
-import de.dailab.newsreel.recommender.common.inter.Item;
-import de.dailab.newsreel.recommender.common.inter.Recommender;
+import de.dailab.newsreel.recommender.common.item.IdomaarItem;
+import de.dailab.newsreel.recommender.common.item.Item;
+import de.dailab.newsreel.recommender.common.recommender.Recommender;
 import de.dailab.newsreel.recommender.common.util.SelfSortingTreeSet;
 import de.dailab.newsreel.recommender.metarecommender.context.Context;
 import de.dailab.newsreel.recommender.metarecommender.delegate.RecommenderDelegate;
