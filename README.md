@@ -1,7 +1,7 @@
 # spark-newsreel-recommender
 
-* @jasjisdo
-* @jensmeiners
+* @jasjisdo(https://github.com/jasjisdo)
+* @jensmeiners(https://github.com/JensMeiners)
 
 ## Build spark-newsreel-recommender with maven
 
