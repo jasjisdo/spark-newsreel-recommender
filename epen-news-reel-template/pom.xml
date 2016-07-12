@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.dailab.newsreel.recommender</groupId>
+        <artifactId>spark-newsreel-recommender</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>news-reel-template</artifactId>
+
+    <dependencies>
+
+        <!--************************************************************************************************************
+        * Eclipse Jetty Server Dependency -  needed to create a newsreel web server.                                   *
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+        </dependency>
+        <!--************************************************************************************************************
+        * GOOGLE JSON simple library - needed to process json files send from plista web client.                       *
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <!--************************************************************************************************************
+        * slf4j logger library - needed to make log out during application operation.                                  *
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.zeromq</groupId>
+            <artifactId>jeromq</artifactId>
+            <version>0.3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flume</groupId>
+            <artifactId>flume-ng-core</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <targetPath>${project.artifactId}-app/bin</targetPath>
+                <includes>
+                    <include>**/*</include>
+                    <include>**/*.gz</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <!--************************************************************************************************************
+        * This resource configuration enables to copy all resources from 'src/main/resources' to
+        * 'target/appassembler/etc'.
+        *
+        *************************************************************************************************************-->
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>generate-start-scripts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <assembleDirectory>${project.build.directory}/${project.artifactId}-app</assembleDirectory>
+                    <repositoryLayout>flat</repositoryLayout>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <configurationSourceDirectory>${project.basedir}/src/main/resources</configurationSourceDirectory>
+                    <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                    <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                    <extraJvmArguments>-Xmx1G</extraJvmArguments>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <repositoryName>lib</repositoryName>
+                    <programs>
+
+                        <!--********************************************************************************************
+                        * Sender Script (BASH) Configurations                                                          *
+                        *********************************************************************************************-->
+                        <program>
+                            <id>sender-default-param</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSender</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>http://127.0.0.1:8080</commandLineArgument>
+                                <commandLineArgument>../etc/dummy.data.idomaar.txt.gz</commandLineArgument>
+                                <commandLineArgument>../etc/results.txt</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <program>
+                            <id>sender-ext-data</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSender</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>http://127.0.0.1:8080</commandLineArgument>
+                                <commandLineArgument>/home/$USER/spark/data</commandLineArgument>
+                                <commandLineArgument>/home/$USER/spark/data/results.txt</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <program>
+                            <id>sender</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSender</mainClass>
+                        </program>
+
+                        <!--********************************************************************************************
+                        * Evaluator Script (BASH) Configurations                                                       *
+                        *********************************************************************************************-->
+                        <program>
+                            <id>demo-evaluator</id>
+                            <mainClass>eu.crowdrec.contest.evaluation.Evaluator</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>results.txt</commandLineArgument>
+                                <commandLineArgument>dummy.data.plista.txt.gz</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <program>
+                            <id>evaluator-ext-data</id>
+                            <mainClass>eu.crowdrec.contest.evaluation.Evaluator</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>/home/$USER/spark/data/results.txt</commandLineArgument>
+                                <commandLineArgument>/home/$USER/spark/data</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                    </programs>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+</project>

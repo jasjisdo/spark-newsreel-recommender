@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spark-newsreel-recommender</artifactId>
+        <groupId>de.dailab.newsreel.recommender</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>clef-news-reel-template</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-core</artifactId>
+            <version>0.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.13</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zeromq</groupId>
+            <artifactId>jeromq</artifactId>
+            <version>0.3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flume</groupId>
+            <artifactId>flume-ng-core</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <targetPath>${project.artifactId}-app/bin</targetPath>
+                <includes>
+                    <include>**/*</include>
+                    <include>**/*.gz</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <!--************************************************************************************************************
+        * This resource configuration enables to copy all resources from 'src/main/resources' to
+        * 'target/appassembler/etc'.
+        *
+        *************************************************************************************************************-->
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>generate-start-scripts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <assembleDirectory>${project.build.directory}/${project.artifactId}-app</assembleDirectory>
+                    <repositoryLayout>flat</repositoryLayout>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <configurationSourceDirectory>${project.basedir}/src/main/resources</configurationSourceDirectory>
+                    <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                    <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                    <extraJvmArguments>
+                        -Xms4G
+                        -Xmx4G
+                    </extraJvmArguments>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <repositoryName>lib</repositoryName>
+                    <programs>
+                        <!--********************************************************************************************
+                        * Server Script (BASH) Configurations                                                          *
+                        *********************************************************************************************-->
+                        <program>
+                            <id>plista-server</id>
+                            <mainClass>de.dailab.plistacontest.client.Client</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>localhost:8080</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <!--********************************************************************************************
+                        * Sender Script (BASH) Configurations                                                          *
+                        *********************************************************************************************-->
+                        <program>
+                            <id>plista-sender</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSenderORP</mainClass>
+                        </program>
+                        <program>
+                            <id>plista-sender-local</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSenderORP</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>http://127.0.0.1:8080</commandLineArgument>
+                               <!-- this is a very large file. I use it just locally! -->
+                                <commandLineArgument>
+                                    ~/workspace/dai-edu/large.data.plista.txt.gz
+                                </commandLineArgument>
+                                <commandLineArgument>../etc/plista-result.txt</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <program>
+                            <id>plista-sender-default-param</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSenderORP</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>http://127.0.0.1:8080</commandLineArgument>
+                                <commandLineArgument>../etc/dummy.data.plista.txt.gz</commandLineArgument>
+                                <commandLineArgument>../etc/plista-result.txt</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <program>
+                            <id>plista-sender-ext-data</id>
+                            <mainClass>eu.crowdrec.contest.sender.RequestSenderORP</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>http://127.0.0.1:8080</commandLineArgument>
+                                <commandLineArgument>/home/$USER/spark/data</commandLineArgument>
+                                <commandLineArgument>/home/$USER/spark/data/plista-results.txt</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+
+                        <!--********************************************************************************************
+                        * Evaluator Script (BASH) Configurations                                                       *
+                        *********************************************************************************************-->
+                        <program>
+                            <id>evaluator</id>
+                            <mainClass>eu.crowdrec.contest.evaluation.Evaluator</mainClass>
+                        </program>
+                        <program>
+                            <id>evaluator-default-param</id>
+                            <mainClass>eu.crowdrec.contest.evaluation.Evaluator</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>../etc/plista-result.txt</commandLineArgument>
+                                <commandLineArgument>../etc/dummy.data.plista.txt.gz</commandLineArgument>
+                                <commandLineArgument>600000</commandLineArgument>
+                                <commandLineArgument>t</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                        <program>
+                            <id>evaluator-ext-data</id>
+                            <mainClass>eu.crowdrec.contest.evaluation.Evaluator</mainClass>
+                            <commandLineArguments>
+                                <commandLineArgument>/home/$USER/spark/data/results.txt</commandLineArgument>
+                                <commandLineArgument>/home/$USER/spark/data</commandLineArgument>
+                            </commandLineArguments>
+                        </program>
+                    </programs>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

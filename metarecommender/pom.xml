@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2015 Jaschar Jisreel Domann et all
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- =========================================================================================================== -->
+<!--                                                                                                             -->
+<!-- foo bar 42                                                                                                  -->
+<!--                                                                                                             -->
+<!-- =========================================================================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.dailab.newsreel.recommender</groupId>
+        <artifactId>spark-newsreel-recommender</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>de.dailab.newsreel.recommender</groupId>
+    <artifactId>metarecommender</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!--************************************************************************************************************
+        * Project Module Dependencies
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>de.dailab.newsreel.recommender</groupId>
+            <artifactId>recommender</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dailab.newsreel.recommender</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dailab.newsreel.recommender</groupId>
+            <artifactId>news-reel-template</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!--************************************************************************************************************
+        * Project Dependencies based on scala
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.10</artifactId>
+        </dependency>
+
+        <!--************************************************************************************************************
+        * Project Dependencies based on java
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+
+
+        <!--************************************************************************************************************
+        * Project Dependencies with scope 'TEST'
+        *************************************************************************************************************-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources/</directory>
+                <targetPath>${project.artifactId}-app/bin</targetPath>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <!--************************************************************************************************************
+        * This resource configuration enables to copy all resources from 'src/main/resources' to
+        * 'target/appassembler/etc'.
+        *
+        *************************************************************************************************************-->
+        <plugins>
+
+            <!--********************************************************************************************************
+            * Read Properties from File so configuration for heap has configured only once. :)
+            *********************************************************************************************************-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>src/main/resources/config.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>generate-start-scripts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <assembleDirectory>${project.build.directory}/${project.artifactId}-app</assembleDirectory>
+                    <repositoryLayout>flat</repositoryLayout>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <configurationSourceDirectory>${project.basedir}/src/main/resources</configurationSourceDirectory>
+                    <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                    <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <repositoryName>lib</repositoryName>
+                    <!-- ***********************************************************************************************
+                    * This will be a longer description! It coming soon!!!
+                    *************************************************************************************************-->
+                    <extraJvmArguments>
+                        -server
+                        -d64
+                        <!-- -Djava.net.preferIPv4Stack=true-->
+                        -XX:+UseConcMarkSweepGC
+                        -XX:MaxGCPauseMillis=75
+                        -XX:+AggressiveOpts
+                        -XX:+UseCompressedOops
+                        -Xms${maxMem} <!-- this property is handled by the 'properties-maven-plugin' configured above! -->
+                        -Xmx${maxMem} <!-- this property is handled by the 'properties-maven-plugin' configured above! -->
+                    </extraJvmArguments>
+                    <!-- ***********************************************************************************************
+                    * experimental: Tuning for Lower Response Time
+                    * Max pause of jvm runtime is 50 % of max reponse time
+                    *************************************************************************************************-->
+                    <!-- <extraJvmArguments>-d64 -XX:+UseG1GC -Xmn16G -Xms16g -Xmx16g -XX:MaxGCPauseMillis=50 -XX:+PrintGCTimeStamp</extraJvmArguments> -->
+                    <!-- <extraJvmArguments>-d64 -XX:+UseG1GC -Xmn3500M -Xms3500M -Xmx3500M -XX:MaxGCPauseMillis=50 -XX:+PrintGCTimeStamp</extraJvmArguments> -->
+                    <programs>
+                        <program>
+                            <id>metarecommender</id>
+                            <mainClass>de.dailab.newsreel.recommender.metarecommender.main.JavaMain</mainClass>
+                        </program>
+                        <program>
+                            <id>live-demo</id>
+                            <mainClass>de.dailab.newsreel.recommender.metarecommender.main.FallbackMain</mainClass>
+                        </program>
+                    </programs>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="RecommenderDelegate" scope="singleton"
+          class="de.dailab.newsreel.recommender.metarecommender.delegate.RecommenderDelegate">
+        <property name="recommenders">
+            <list>
+                <!--ref bean="CollabFilter"/-->
+                <!--<ref bean="ConcurrentMostPopular"/>-->
+                <ref bean="MostPopular300" /> <!-- evaluate this! -->
+                <!--ref bean="CategoryMP100" /--> <!-- evaluate this! -->
+                <!--<ref bean="MostPopular20" />-->
+                <!--<ref bean="MostPopular30" />-->
+                <!--<ref bean="MostPopular50" />-->
+                <!--<ref bean="MostPopular70" />-->
+                <!--<ref bean="MostPopular100" />--> <!-- evaluate this! -->
+                <!--ref bean="FP" /-->
+                <!-- Add more Recommeder here if available -->
+            </list>
+        </property>
+    </bean>
+
+    <!-- Default Recommender -->
+    <bean name="CollabFilter" scope="singleton"
+          class="de.dailab.newsreel.recommender.CF"/>
+    <bean name="FP" scope="singleton"
+          class="de.dailab.newsreel.recommender.FP" />
+
+    <bean name="ConcurrentMostPopular" scope="singleton"
+        class="de.dailab.newsreel.recommender.ConcurrentMostPopular">
+    </bean>
+
+    <!-- Most Popular permutations -->
+    <bean name="CategoryMP100" scope="singleton"
+          class="de.dailab.newsreel.recommender.CategoryMP">
+        <constructor-arg name="listLength" value="100" />
+        <constructor-arg name="timewindow" value="48" />
+    </bean>
+
+    <bean name="MostPopular10" scope="singleton"
+          class="de.dailab.newsreel.recommender.MostPopular">
+        <constructor-arg name="lengthlist">
+            <map>
+                <entry key="1650" value="30"></entry>
+            </map>
+        </constructor-arg>
+        <constructor-arg name="timewindow" value="24" />
+    </bean>
+    <bean name="MostPopular20" scope="singleton"
+          class="de.dailab.newsreel.recommender.MostPopular">
+        <constructor-arg name="listLength" value="20" />
+        <constructor-arg name="timewindow" value="6" />
+
+    </bean>
+    <bean name="MostPopular30" scope="singleton"
+          class="de.dailab.newsreel.recommender.MostPopular">
+        <constructor-arg name="listLength" value="30" />
+        <constructor-arg name="timewindow" value="6" />
+    </bean>
+    <bean name="MostPopular50" scope="singleton"
+          class="de.dailab.newsreel.recommender.MostPopular">
+        <constructor-arg name="listLength" value="50" />
+        <constructor-arg name="timewindow" value="6" />
+    </bean>
+    <bean name="MostPopular70" scope="singleton"
+          class="de.dailab.newsreel.recommender.MostPopular">
+        <constructor-arg name="listLength" value="70" />
+        <constructor-arg name="timewindow" value="6" />
+    </bean>
+    <bean name="MostPopular300" scope="singleton"
+          class="de.dailab.newsreel.recommender.MostPopular">
+        <constructor-arg name="listLength" value="300" />
+        <constructor-arg name="timewindow" value="48" />
+    </bean>
+</beans>

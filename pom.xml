@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2015 Jaschar Jisreel Domann et all
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!-- =========================================================================================================== -->
+<!--                                                                                                             -->
+<!-- This is the main pom of the project: plista clef newsreel challenge.                                                                                                   -->
+<!--                                                                                                             -->
+<!-- =========================================================================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--****************************************************************************************************************
+    * Important Properties used in child poms
+    *****************************************************************************************************************-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <java.version>1.8</java.version>
+        <scala.main.version>2.10</scala.main.version>
+        <scala.version>${scala.main.version}.6</scala.version>
+        <spark.version>1.6.1</spark.version>
+        <hadoop.version>2.6.0</hadoop.version>
+        <jetty.version>9.3.6.v20151106</jetty.version>
+        <log4j.version>1.2.17</log4j.version>
+
+        <spark.ui.port>4040</spark.ui.port>
+        <jetty.http.port>8080</jetty.http.port>
+    </properties>
+
+    <!--****************************************************************************************************************
+    * Project Identifiers
+    *****************************************************************************************************************-->
+    <groupId>de.dailab.newsreel.recommender</groupId>
+    <artifactId>spark-newsreel-recommender</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <description>
+        A main project for a spark based orp plista recommender.
+        further read publication: http://www.dai-labor.de/publikationen/1076
+    </description>
+
+    <modules>
+        <module>common</module>
+        <module>metarecommender</module>
+        <module>recommender</module>
+        <module>epen-news-reel-template</module>
+        <module>clef-newsreel-template</module>
+    </modules>
+
+    <url>https://edu.aot.tu-berlin.de/svn/lehre/irml/ws15/pj_newsreel</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Jaschar Domann</name>
+        </developer>
+        <developer>
+            <name>Niels Johannis</name>
+        </developer>
+        <developer>
+            <name>Jens Meiners</name>
+        </developer>
+        <developer>
+            <name>Lea Helmers</name>
+        </developer>
+		<developer>
+			<name>Tom Priebe</name>
+		</developer>
+        <!-- please add your name here -->
+    </developers>
+
+    <!--****************************************************************************************************************
+    * Dependency Pre-Configurations -  In Child Poms all defined versions are inherited.
+    *****************************************************************************************************************-->
+    <dependencyManagement>
+        <dependencies>
+
+            <!--********************************************************************************************************
+            * Managed Dependencies based on scala
+            *********************************************************************************************************-->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_${scala.main.version}</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_${scala.main.version}</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-assembly-hadoop2.6.0</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <!--********************************************************************************************************
+            * Managed Dependencies based on java
+            *********************************************************************************************************-->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.2.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>2.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>19.0</version>
+            </dependency>
+
+            <!--********************************************************************************************************
+            * Managed Dependencies logger framework
+            *********************************************************************************************************-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>apache-log4j-extras</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <!--********************************************************************************************************
+            * Managed Dependencies with 'TEST' scope
+            *********************************************************************************************************-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>1.3</version>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <!--****************************************************************************************************************
+    * Repositories which provides important dependencies.
+    *****************************************************************************************************************-->
+    <repositories>
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>https://oss.sonatype.org/content/groups/scala-tools/</url>
+        </repository>
+        <repository>
+            <id>lehre-thirdparty</id>
+            <name>thirdparty</name>
+            <url>http://edu.dai-labor.de/nexus/content/repositories/thirdparty/</url>
+        </repository>
+    </repositories>
+
+    <!--****************************************************************************************************************
+    * Repositories which provides important (maven) plugins.
+    *****************************************************************************************************************-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>https://oss.sonatype.org/content/groups/scala-tools/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>lehre-thirdparty</id>
+            <name>thirdparty</name>
+            <url>http://edu.dai-labor.de/nexus/content/repositories/thirdparty/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+
+        <!--************************************************************************************************************
+        * Maven Plugin Configuration
+        *************************************************************************************************************-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <compilerId>javac-with-errorprone</compilerId>
+                    <forceJavacCompilerUse>true</forceJavacCompilerUse>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <maxmem>1024m</maxmem>
+                    <fork>true</fork>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-compiler-javac-errorprone</artifactId>
+                        <version>2.6</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.google.errorprone</groupId>
+                        <artifactId>error_prone_core</artifactId>
+                        <version>2.0.7</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- don't create a test jar if empty (example package=pom) -->
+                    <skipIfEmpty>true</skipIfEmpty>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
