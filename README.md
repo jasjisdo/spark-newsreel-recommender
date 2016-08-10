@@ -10,6 +10,10 @@ $> mvn clean verify -DskipTests
 
 to build *spark-newsreel-recommender* without running any tests. 
 
+##
+
+[Real-time News Recommendations using Apache Spark](http://ceur-ws.org/Vol-1609/16090628.pdf)
+
 ## Project Authors
 
 * [@jasjisdo](https://github.com/jasjisdo)
