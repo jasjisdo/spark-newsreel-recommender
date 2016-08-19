@@ -19,4 +19,4 @@ to build *spark-newsreel-recommender* without running any tests.
 * [@jasjisdo](https://github.com/jasjisdo)
 * [@jensmeiners](https://github.com/JensMeiners)
 * [@helme](https://github.com/helme)
-* ...
+* [@andreas-dai](https://github.com/andreas-dai)
