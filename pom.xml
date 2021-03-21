@@ -37,7 +37,7 @@ limitations under the License.
         <scala.version>${scala.main.version}.6</scala.version>
         <spark.version>1.6.1</spark.version>
         <hadoop.version>2.6.0</hadoop.version>
-        <jetty.version>9.3.6.v20151106</jetty.version>
+        <jetty.version>9.3.27.v20190418</jetty.version>
         <log4j.version>1.2.17</log4j.version>
 
         <spark.ui.port>4040</spark.ui.port>
