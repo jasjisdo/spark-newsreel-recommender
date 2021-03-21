@@ -17,6 +17,6 @@ to build *spark-newsreel-recommender* without running any tests.
 ## Project Authors
 
 * Jaschar Jisreel Domann ([@jasjisdo](https://github.com/jasjisdo))
-* Jens Meiners ([@jensmeiners](https://github.com/JensMeiners))
+* Jens Wesselmann (born as Meiners) ([@jensmeiners](https://github.com/JensMeiners))
 * Lea Helmers ([@helmersl](https://github.com/helmersl))
 *  Andreas Lommatzsch ([@andreas-dai](https://github.com/andreas-dai))
